@@ -18,13 +18,20 @@ describe('rb- test helper functions sumPaymentTotal and calculateTipPercent', fu
     // expect(someValue).toEqual('');
     expect(sumPaymentTotal('tipPercent')).toEqual(15);
   });
+  it('-rb appendDeleteBtn() test delete btn has been added to tr', function () {
+    expect(paymentTbody.firstChild.lastChild.innerText).toEqual('X');
+    expect(paymentTbody.firstChild.childElementCount).toEqual(4);
+  });
 
+  // it('checks that appendDeleteBtn adds the button', function () {
+  //   expect(testValue).someMatcher(testAnswer);
+  // });
   afterAll(function () {
     // teardown logic
-
     allPayments = {};
-    submitPaymentInfo();
-    summaryTable.innerHTML = '';
-    paymentTbody.remove();
+    paymentTbody.innerHTML = '';
+    summaryTds[0].innerHTML = ' ';
+    summaryTds[1].innerHTML = ' ';
+    summaryTds[2].innerHTML = ' ';
   });
 });

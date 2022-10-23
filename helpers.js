@@ -22,3 +22,17 @@ function appendTd(tr, value) {
 
   tr.append(newTd);
 }
+
+function appendDeleteBtn(tr) {
+  let newTd = document.createElement('td');
+  newTd.innerText = 'X';
+  newTd.className = 'deleteBtn';
+  newTd.addEventListener('click', function (event) {
+    delete allServers[event.target.parentElement.id];
+    delete allPayments[event.target.parentElement.id];
+    event.target.parentElement.remove();
+    updateServerTable();
+    updateSummary();
+  });
+  tr.appendChild(newTd);
+}

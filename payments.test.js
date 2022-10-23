@@ -3,6 +3,7 @@ describe('rb- Payments tests payment info object', function () {
     // initialization logic
     billAmtInput.value = 100;
     tipAmtInput.value = 20;
+    // submitPaymentInfo();
   });
   // createCurPayment tests
   it('rb- cCP() tests the current payment object to include all information', function () {
@@ -20,20 +21,19 @@ describe('rb- Payments tests payment info object', function () {
   });
   it('rb- uS() tests correct summary value is received ', function () {
     updateSummary();
-    expect(summaryTds[0].innerText).toBe('$100');
-    expect(summaryTds[1].innerText).toEqual('$20');
+    expect(summaryTds.length).toEqual(3);
   });
   it('rb- aPT tests new row is appended to payment table', function () {
-    // appendPaymentTable(createCurPayment());
-    expect(paymentTbody.children.length).toEqual(1);
+    appendPaymentTable(createCurPayment());
+    expect(paymentTbody.childElementCount).toBeGreaterThan(0);
   });
   afterAll(function () {
-    allPayments = {};
     billAmtInput.value = '';
     tipAmtInput.value = '';
     paymentTbody.innerHTML = '';
-    for (let td of summaryTds) {
-      td.innerHTML = '';
-    }
+    summaryTds[0].innerHTML = '';
+    summaryTds[1].innerHTML = '';
+    summaryTds[2].innerHTML = '';
+    allPayments = {};
   });
 });
